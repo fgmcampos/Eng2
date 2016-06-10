@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Condominio</title>
+<title>Lançar Despesa</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
     rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -14,18 +14,17 @@
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
      <ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="${linkTo[IndexController].index()}">Home</a></li>
-  <li role="presentation"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
+  <li role="presentation"><a href="${linkTo[IndexController].index()}">Home</a></li>
+  <li role="presentation" class="active"><a href="#">Lançar Despesas</a></li>
   <li role="presentation"><a href="#">Gerenciar Condominio</a></li>
-  <li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietario</a></li>
+  <li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietário</a></li>
   <li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter Apartamento</a></li>
   <li role="presentation"><a href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>
 </ul>
  
   </div>
 </nav>
-	<center><h1>Bem vindo ao programa de gerenciamento de condomínio.</h1>
-	<h1>Utilize a barra acima para navegar pelo site! </h1>
-	</center>
+
+
 </body>
 </html>

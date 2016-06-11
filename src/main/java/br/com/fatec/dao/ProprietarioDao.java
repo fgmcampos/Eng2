@@ -32,4 +32,26 @@ public class ProprietarioDao {
 		}
 			
 		}
+	
+	public List<Proprietario> lista(){
+		TypedQuery<Proprietario> query =	manager.createQuery("select p from Proprietario p",Proprietario.class);
+		return query.getResultList();
+	}
+	
+	
+	
+	public void deleta(int id) {
+		Proprietario p = new Proprietario();
+		p.setId(id);
+		System.out.println("Deletendo Proprietario com o ID = "+ id);
+		try{
+			manager.getTransaction().begin();
+			manager.remove(manager.getReference(Proprietario.class, id));
+			manager.getTransaction().commit();
+		}catch(Exception e){
+			System.out.println("ERRO AO DELETAR");
+			String s = e.getMessage();
+			System.out.println(s);
+		}
+	}
 }

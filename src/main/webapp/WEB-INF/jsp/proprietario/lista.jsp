@@ -1,6 +1,8 @@
 <%@page import="br.com.fatec.model.Proprietario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,16 +32,42 @@
 		</ul>
 	</div>
 	</nav>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>Remover</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${proprietario}" var="p">
+			<c:set var="id" value="${p.id}" scope="request"></c:set>
+			<tr>
+				<td>${p.id}</td>
+				<td>${p.nome}</td>
+				<td>${p.telefone}</td>
 
-<form action="${linkTo[ProprietarioController].adiciona(null)}" method="post">
-	<label for="nome">Nome:</label>
-	<input type="text" id="nome" name="proprietario.nome" class="form-control" value="${proprietario.nome}"/>	
-	<label for="telefone">Telefone:</label>
-	<input type="text" id="telefone" name="proprietario.telefone" class="form-control" value="${proprietario.telefone}" />
-	<input type="submit" value="Gravar" class="btn" size="50"
-			style="width: 151px; height: 28px;" /> 
-			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="${linkTo[ProprietarioController].lista()}"> Ver Lista</a></form> 
-	
+				<td><a href="editar?id=${p.id}">Editar</a></td>
+				<td>
+					<form action="${linkTo[ProprietarioController].apaga(id)}" method="post">
+						<input name="proprietario.id" value="${proprietario}" type="hidden" />						   
+						<button type="submit" name="_method" value="DELETE" >Remover</button>
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+
+
+
+<form action="${linkTo[ProprietarioController].form()}" method="post">
+			<input type="submit"
+			value="Voltar" class="btn" size="50"
+			style="width: 151px; height: 28px;" />
 			
+	</form>
 </body>
 </html>

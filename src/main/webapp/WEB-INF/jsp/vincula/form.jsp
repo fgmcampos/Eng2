@@ -1,5 +1,7 @@
+<%@page import="br.com.fatec.dao.ProprietarioDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,19 +37,26 @@
 		</ul>
 	</div>
 	</nav>
-
+  <form action="${linkTo[VinculaController].adiciona(null)}" method="post">
 	<h4>
-		<p>Proprietario:  <select></select>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="${linkTo[ProprietarioController].form()}"> Adicionar</a></p>
-		<p>Telefone:</p>  
-		
-		<p>Apartamento:  <select></select>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="${linkTo[ApartamentoController].form()}">Adicionar</a></p>
+		Proprietario:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name = vincula.proprietario style="width: 200px; height: 28px;" >
+		<option value=""> </option>	
+		<c:forEach  var="proprietario" items="${proprietario}">
+        <option value="${proprietario.id}">${proprietario.nome}</option>
+     </c:forEach>
+		</select>  
+		&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<a href="${linkTo[ProprietarioController].form()}"> Adicionar</a>
+		</br>
+		Apartamento:  &nbsp;&nbsp;<select name = vincula.apartamento style="width: 200px; height: 28px;" >
+		<option value=""> </option>	
+		<c:forEach  var="apartamento" items="${apartamento}">
+        <option value="${apartamento.id}" >${apartamento.id}</option>
+     </c:forEach>
+		</select>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="${linkTo[ApartamentoController].form()}">Adicionar</a>
 	</h4>
-	
 
- <br> <br>
 			<input type="submit" value="Gravar" class="btn" size="50"
 			style="width: 151px; height: 28px;" />
-			<input type="submit" value="Listar" class="btn" size="50"
-			style="width: 151px; height: 28px;" />  
-			</body>
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="${linkTo[VinculaController].lista()}"> Ver Lista</a>
+			</form>		
 </html>

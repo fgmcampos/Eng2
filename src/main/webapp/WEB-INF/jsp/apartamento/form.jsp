@@ -24,26 +24,24 @@
  
   </div>
 </nav>
-
+<form action="${linkTo[ApartamentoController].adiciona(null)}" method="post">
 <label for="nome">Número:</label>
-	<input type="text" id="numero" name="numero" class="form-control" />
+	<input type="text" id="id" name="apartamento.id" class="form-control" value="${apartamento.id}"/>
 
 	<label for="telefone">Quantidade de quartos:</label>
-	<input type="text" id="qtdquartos" name="qtdquartos" class="form-control" />
+	<input type="text" id="quartos" name="apartamento.quartos" class="form-control" value="${apartamento.quartos}"/>
 	
 	<p><label for="telefone">Ocupação:</label>
-	<select>
- <option value="volvo">Proprietário</option>
-  <option value="saab">Vazio</option>
-  <option value="mercedes">Inquilino</option>
+	<select name="apartamento.ocupacao" class="form-control" >
+  <option value="1">Proprietário</option>
+  <option value="2">Vazio</option>
+  <option value="3">Inquilino</option>
 </select></p>
 
 		<input type="submit" value="Gravar" class="btn" size="50"
 			style="width: 151px; height: 28px;" /> 
-			<input type="submit"
-			value="Listar" class="btn" size="50"
-			style="width: 151px; height: 28px;" />
-			
+			<a href="${linkTo[ApartamentoController].lista()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listar Apartamentos Cadastrados</a>
+</form>	
 	
 </body>
 </html>

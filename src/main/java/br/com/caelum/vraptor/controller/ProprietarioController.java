@@ -26,7 +26,6 @@ public class ProprietarioController {
 
 	private ProprietarioDao proprietarioDao;
 	private final Result result;
-	private Validator validator;
 
 	/**
 	 * @deprecated CDI eyes only
@@ -68,15 +67,17 @@ public class ProprietarioController {
 	
 	@Delete("/proprietario/lista{id}")
 	public void apaga(int id) {
-		System.out.println(id);
-		//System.out.println("ID = " +id);
-		//try {
+			System.out.println(id);
 			proprietarioDao.deleta(id);
-		//} catch (EntityNotFoundException e) {
-		//	System.out.println("ERRO ao deletar o id" +id);
-		//	e.printStackTrace();
-		//	
-		//}
-		result.redirectTo(this).lista();
+			result.redirectTo(this).lista();
+		
+		
 	}
+	@Get("/proprietario/{id}")
+	public void edita(int id){
+		Proprietario proprietario = proprietarioDao.busca(id);
+				result.include("proprietario", proprietario);
+				result.of(this).form();
+	}
+	
 }

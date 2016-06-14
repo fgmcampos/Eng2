@@ -1,36 +1,43 @@
 package br.com.fatec.model;
 
+import java.math.BigInteger;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+@Entity
 public class Apartamento {
 	
-	@Id @NotEmpty
-	private int numero;
-	@Min(1) @NotEmpty
-	private int qtdQuartos;
+	@Id
+	private int id;
+	@NotNull
+	private int quartos;
 	@NotEmpty
-	private Ocupacao ocupacao;
+	private String ocupacao;
 	
-	public int getNumero() {
-		return numero;
+	public int getId() {
+		return id;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getQtdQuartos() {
-		return qtdQuartos;
+	public int getQuartos() {
+		return quartos;
 	}
-	public void setQtdQuartos(int qtdQuartos) {
-		this.qtdQuartos = qtdQuartos;
+	public void setQuartos(int quartos) {
+		this.quartos = quartos;
 	}
-	public Ocupacao getOcupacao() {
+	public String getOcupacao() {
 		return ocupacao;
 	}
-	public void setOcupacao(Ocupacao ocupacao) {
+	public void setOcupacao(String ocupacao) {
 		this.ocupacao = ocupacao;
 	}
+	
+	
 	
 }

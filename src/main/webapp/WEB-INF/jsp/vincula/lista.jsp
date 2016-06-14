@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Proprietario</title>
+<title>Vincular Apartamento</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -35,24 +35,25 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>Id</th>
-			<th>Nome</th>
-			<th>Telefone</th>
-			<th>Editar</th>
+			<th>Apartamento</th>
+			<th>Proprietario</th>
+			<th>Remover</th>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${proprietario}" var="p">
-			<c:set var="id" value="${p.id}" scope="request"></c:set>
+		<c:forEach items="${vincula}" var="v">
+			<c:set var="id"  value="${v.id}" scope="request"></c:set>
+			<c:set var="pro" value="${v.proprietario}" scope="request"></c:set>
 			<tr>
-				<td>${p.id}</td>
+				<td>${v.apartamento}</td>
+				<c:forEach items="${proprietario}" var="p">
+				<c:if test="${v.proprietario == p.id}">
 				<td>${p.nome}</td>
-				<td>${p.telefone}</td>
-
-				<td><a href="${linkTo[ProprietarioController].edita(id)}"><span class="glyphicon-pencil"></span></a></td>
+				</c:if>
+				</c:forEach>
 				<td>
-					<form action="${linkTo[ProprietarioController].apaga(id)}" method="post">
-						<input name="proprietario.id" value="${proprietario}" type="hidden" />						   
+					<form action="${linkTo[VinculaController].apaga(id)}" method="post">
+						<input name="vincula.id" value="${vincula}" type="hidden" />						   
 						<button type="submit" name="_method" value="DELETE" >Remover</button>
 					</form>
 				</td>
@@ -63,7 +64,7 @@
 
 
 
-<form action="${linkTo[ProprietarioController].form()}" method="post">
+<form action="${linkTo[VinculaController].form()}" method="post">
 			<input type="submit"
 			value="Voltar" class="btn" size="50"
 			style="width: 151px; height: 28px;" />

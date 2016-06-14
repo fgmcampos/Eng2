@@ -23,12 +23,15 @@ public class ProprietarioDao {
 	
 	@Transactional
 	public void adiciona(Proprietario proprietario) {
-		if(proprietario.getId()==0){
+		if(proprietario.getId()!=0){
+			manager.getTransaction().begin();
+			manager.merge(proprietario);
+			manager.getTransaction().commit();
+		}else{
 			manager.getTransaction().begin();
 			manager.persist(proprietario);
 			manager.getTransaction().commit();
-		}else{
-			manager.merge(proprietario);
+			
 		}
 			
 		}
@@ -54,4 +57,10 @@ public class ProprietarioDao {
 			System.out.println(s);
 		}
 	}
+	
+	public Proprietario busca(int id){
+        TypedQuery<Proprietario> query =  manager.createQuery("select p from Proprietario p where p.id = :id ",Proprietario.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

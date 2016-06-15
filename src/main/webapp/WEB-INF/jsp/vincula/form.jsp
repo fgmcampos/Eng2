@@ -22,12 +22,10 @@
 	<nav class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<ul class="nav nav-pills">
-			<li role="presentation"><a
-				href="${linkTo[IndexController].index()}">Home</a></li>
+			<li role="presentation"><a href="${linkTo[IndexController].index()}">Home</a></li>
 			<li role="presentation"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
-			<li role="presentation"><a href="#">Gerenciar Condominio</a></li>
-			<li role="presentation"><a
-				href="${linkTo[ProprietarioController].form()}">Manter
+			<li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
+			<li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter
 					Proprietario</a></li>
 			<li role="presentation"><a
 				href="${linkTo[ApartamentoController].form()}">Manter
@@ -46,6 +44,7 @@
      </c:forEach>
 		</select>  
 		&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<a href="${linkTo[ProprietarioController].form()}"> Adicionar</a>
+		</br>
 		</br>
 		Apartamento:  &nbsp;&nbsp;<select name = vincula.apartamento style="width: 200px; height: 28px;" >
 		<option value=""> </option>	

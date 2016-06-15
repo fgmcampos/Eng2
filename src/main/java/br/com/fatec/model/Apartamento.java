@@ -1,10 +1,7 @@
 package br.com.fatec.model;
 
-import java.math.BigInteger;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;

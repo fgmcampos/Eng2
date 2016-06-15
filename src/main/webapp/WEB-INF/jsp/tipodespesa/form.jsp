@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Apartamento</title>
+<title>Nova Despesa</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
     rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -15,33 +18,31 @@
   <div class="container">
      <ul class="nav nav-pills">
   <li role="presentation"><a href="${linkTo[IndexController].index()}">Home</a></li>
-  <li role="presentation"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
+  <li role="presentation" class="active"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
   <li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
   <li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietário</a></li>
-  <li role="presentation" class="active"><a href="#">Manter Apartamento</a></li>
+  <li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter Apartamento</a></li>
   <li role="presentation"><a href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>
 </ul>
  
   </div>
 </nav>
-<form action="${linkTo[ApartamentoController].adiciona(null)}" method="post">
-<label for="nome">Número:</label>
-	<input type="text" id="id" name="apartamento.id" class="form-control" value="${apartamento.id}"/>
 
-	<label for="telefone">Quantidade de quartos:</label>
-	<input type="text" id="quartos" name="apartamento.quartos" class="form-control" value="${apartamento.quartos}"/>
+<form action="${linkTo[TipodespesaController].adiciona(null)}" method="post">
+<h4>
+	<label for="nome">Nome:</label>
+	<input type="text" id="nome" name="tipodespesa.nome" class="form-control" value="${tipodespesa.nome}"/>	
+	</br>
+	<input type="checkbox" id="valorporquarto" name="tipodespesa.valorporquarto" value="1" />
+	&nbsp;&nbsp; Valor deve ser dividido por quartos
+	</br>
+	</br>
+	<input type="submit" value="Gravar" class="btn" size="50" style="width: 151px; height: 28px;" /> 
+			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="${linkTo[TipodespesaController].lista()}"> Ver Lista</a>
+			&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<a href="${linkTo[DespesaController].form()}"> Voltar</a>
+			</h4></form> 
 	
-	<p><label for="telefone">Ocupação:</label>
-	<select name="apartamento.ocupacao" class="form-control" >
-  <option value="1">Proprietário</option>
-  <option value="2">Vazio</option>
-  <option value="3">Inquilino</option>
-</select></p>
-
-		<input type="submit" value="Gravar" class="btn" size="50"
-			style="width: 151px; height: 28px;" /> 
-			<a href="${linkTo[ApartamentoController].lista()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listar Apartamentos Cadastrados</a>
-</form>	
-	
+			
+			
 </body>
 </html>

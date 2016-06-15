@@ -24,9 +24,9 @@
 	<div class="container">
 		<ul class="nav nav-pills">
 			<li role="presentation"><a href="${linkTo[IndexController].index()}">Home</a></li>
-			<li role="presentation"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
+			<li role="presentation" class="active"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
 			<li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
-			<li role="presentation" class="active"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietario</a></li>
+			<li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietario</a></li>
 			<li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter Apartamento</a></li>
 			<li role="presentation"><a href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>
 		</ul>
@@ -35,24 +35,20 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
-			<th>Id</th>
 			<th>Nome</th>
-			<th>Telefone</th>
-			<th>Editar</th>
+			<th>Cobrado por quarto?</th>
+			<th>Remover</th>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${proprietario}" var="p">
-			<c:set var="id" value="${p.id}" scope="request"></c:set>
+		<c:forEach items="${tipodespesa}" var="t">
+			<c:set var="id" value="${t.id}" scope="request"></c:set>
 			<tr>
-				<td>${p.id}</td>
-				<td>${p.nome}</td>
-				<td>${p.telefone}</td>
-
-				<td><a href="${linkTo[ProprietarioController].edita(id)}"><span class="glyphicon-pencil"></span></a></td>
+				<td>${t.nome}</td>
+				<td><c:if test="${t.valorporquarto==1}">Sim</c:if><c:if test="${t.valorporquarto==0}">Não</c:if></td>
 				<td>
-					<form action="${linkTo[ProprietarioController].apaga(id)}" method="post">
-						<input name="proprietario.id" value="${proprietario}" type="hidden" />						   
+					<form action="${linkTo[TipodespesaController].apaga(id)}" method="post">
+						<input name="tipodespesa.id" value="${tipodespesa}" type="hidden" />						   
 						<button type="submit" name="_method" value="DELETE" >Remover</button>
 					</form>
 				</td>
@@ -63,7 +59,7 @@
 
 
 
-<form action="${linkTo[ProprietarioController].form()}" method="post">
+<form action="${linkTo[TipodespesaController].form()}" method="post">
 			<input type="submit"
 			value="Voltar" class="btn" size="50"
 			style="width: 151px; height: 28px;" />

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Lançar Despesa</title>
+<title>Nona despesa geral</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
     rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -20,7 +20,7 @@
   <div class="container">
      <ul class="nav nav-pills">
   <li role="presentation"><a href="${linkTo[IndexController].index()}">Home</a></li>
-  <li role="presentation" class="active"><a href="#">Lançar Despesas</a></li>
+  <li role="presentation" class="active"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
   <li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
   <li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietário</a></li>
   <li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter Apartamento</a></li>
@@ -32,20 +32,10 @@
 <% Date data = new Date();
 SimpleDateFormat data_formatada = new SimpleDateFormat("dd/MM/yyyy");
 String mostra_data = data_formatada.format(data);%>
-<form action="${linkTo[DespesaController].adiciona(null)}" method="post">
+<form action="${linkTo[DespesaController].adicionaGeral(null)}" method="post">
 <h4>
 <label>Despesa Individual:</label></br></br>
 Data:<%=mostra_data%>
-		</br> 
-		</br>
-		Apartamento:&nbsp;&nbsp;&nbsp;
-		<select name = despesa.apartamento style="width: 200px; height: 28px;" >
-		<option value=""> </option>	
-		<c:forEach  var="apartamento" items="${apartamento}">
-        <option value="${apartamento.id}">${apartamento.id}</option>
-    	 </c:forEach>
-		</select>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</br>
 		</br>
 		Despesa:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -59,7 +49,7 @@ Data:<%=mostra_data%>
 		</br>
 		
 Mês de Referência:</br></br>
-<input  type="month" id="mesano" name="despesa.mesano" class="form-control" value="${despesa.mesano}" style="width: 200px; height: 28px;" required = "required" />
+<input  type="month" id="mesano" name="despesa.mesano" class="form-control" value="${despesa.mesano}" style="width: 200px; height: 28px;" />
 </br>
 Valor:
 </br>
@@ -69,8 +59,8 @@ Valor:
 		<input type="submit" value="Gravar" class="btn" size="50"
 			style="width: 151px; height: 28px;" /> 
 			
-			<a href="${linkTo[DespesaController].geral()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nova despesa geral</a>
-<a href="${linkTo[DespesaController].lista()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Listar Despesas</a>
+			<a href="${linkTo[DespesaController].form()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voltar</a>
+
 </h4>
 </form>
 

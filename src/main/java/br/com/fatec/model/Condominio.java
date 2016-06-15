@@ -3,26 +3,24 @@ package br.com.fatec.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
-
+@Entity
 public class Condominio {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty
-	private String mesAno;	
-	private Date dataPagamento;
-	@NotEmpty
-	private Date dataVencimento;
+	private String apartamento;
+	private String mesano;
+	private String datapagamento;
+	private String datavencimento;
 	private float valorPago;
-	@NotEmpty
 	private float valorAPagar;
-	private List<Despesa> listaDEspesa;
-	private List<ItemCondominio> listaCondominio;
 	
 	public int getId() {
 		return id;
@@ -30,23 +28,18 @@ public class Condominio {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getMesAno() {
-		return mesAno;
+
+	public String getDatapagamento() {
+		return datapagamento;
 	}
-	public void setMesAno(String mesAno) {
-		this.mesAno = mesAno;
+	public void setDatapagamento(String datapagamento) {
+		this.datapagamento = datapagamento;
 	}
-	public Date getDataPagamento() {
-		return dataPagamento;
+	public String getDatavencimento() {
+		return datavencimento;
 	}
-	public void setDataPagamento(Date dataPagamento) {
-		this.dataPagamento = dataPagamento;
-	}
-	public Date getDataVencimento() {
-		return dataVencimento;
-	}
-	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
+	public void setDatavencimento(String datavencimento) {
+		this.datavencimento = datavencimento;
 	}
 	public float getValorPago() {
 		return valorPago;
@@ -60,18 +53,19 @@ public class Condominio {
 	public void setValorAPagar(float valorAPagar) {
 		this.valorAPagar = valorAPagar;
 	}
-	public List<Despesa> getListaDEspesa() {
-		return listaDEspesa;
+	public String getApartamento() {
+		return apartamento;
 	}
-	public void setListaDEspesa(List<Despesa> listaDEspesa) {
-		this.listaDEspesa = listaDEspesa;
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
 	}
-	public List<ItemCondominio> getListaCondominio() {
-		return listaCondominio;
+	public String getMesano() {
+		return mesano;
 	}
-	public void setListaCondominio(List<ItemCondominio> listaCondominio) {
-		this.listaCondominio = listaCondominio;
+	public void setMesano(String mesano) {
+		this.mesano = mesano;
 	}
+
 	
 	
 }

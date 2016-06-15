@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Apartamento</title>
+<title>Condominio</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -27,62 +27,32 @@
 				href="${linkTo[IndexController].index()}">Home</a></li>
 			<li role="presentation"><a
 				href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
-			<li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
+			<li role="presentation" class="active"><a href="#">Gerenciar Condominio</a></li>
 			<li role="presentation"><a
 				href="${linkTo[ProprietarioController].form()}">Manter
 					Proprietario</a></li>
-			<li role="presentation" class="active"><a href="">Manter
+			<li role="presentation"><a href="">Manter
 					Apartamento</a></li>
 			<li role="presentation"><a
 				href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>
 		</ul>
 	</div>
 	</nav>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Numero</th>
-				<th>Quartos</th>
-				<th>Ocupação</th>
-				<th>Editar</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${apartamento}" var="a">
-				<c:set var="id" value="${a.id}" scope="request"></c:set>
-				<tr>
-					<td>${a.id}</td>
-					<td>${a.quartos}</td>
-					<td><c:if test="${a.ocupacao == 1}">							
-								Proprietário						
-						</c:if><c:if test="${a.ocupacao == 2}">							
-								Vazio						
-						</c:if><c:if test="${a.ocupacao == 3}">							
-								Inquilino						
-						</c:if></td>
-
-
-					<td><a href="${linkTo[ApartamentoController].edita(id)}"><span
-							class="glyphicon-pencil"></span></a></td>
-					<td>
-						<form action="${linkTo[ApartamentoController].apaga(id)}"
-							method="post">
-							<input name="apartamento.id" value="${apartamento}" type="hidden" />
-							   
-							<button type="submit" name="_method" value="DELETE">Remover</button>
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-
-
-	<form action="${linkTo[ApartamentoController].form()}" method="post">
-		<input type="submit" value="Voltar" class="btn" size="50"
-			style="width: 151px; height: 28px;" />
-
-	</form>
+	<h4>
+	<form action="${linkTo[CondominioController].adiciona(null)}" method="post">
+		Apartamento:  &nbsp;&nbsp;<select name = concominio.apartamento style="width: 200px; height: 28px;" required = "required">
+		<option value=""> </option>	
+		<c:forEach  var="apartamento" items="${apartamento}">
+        <option value="${apartamento.id}" >${apartamento.id}</option>
+     </c:forEach>
+		</select>
+		
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	Mês: &nbsp;&nbsp;
+		<input  type="month" id="mesano" name="condominio.mesano"  value="${condominio.mesano}" style="width: 200px; height: 28px;" required = "required" />
+		</br></br>
+		<input type="submit" value="Verificar" class="btn" size="50"
+			style="width: 200px; height: 35px;" /> 
+		</form>
+	</h4>
 </body>
 </html>

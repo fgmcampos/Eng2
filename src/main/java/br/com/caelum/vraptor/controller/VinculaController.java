@@ -15,9 +15,11 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
 import br.com.fatec.dao.ApartamentoDao;
 import br.com.fatec.dao.ProprietarioDao;
+import br.com.fatec.dao.TipodespesaDao;
 import br.com.fatec.dao.VinculaDao;
 import br.com.fatec.model.Apartamento;
 import br.com.fatec.model.Proprietario;
+import br.com.fatec.model.Tipodespesa;
 import br.com.fatec.model.Vincula;
 import br.com.fatec.seguranca.Open;
 
@@ -28,6 +30,7 @@ public class VinculaController {
 	private ProprietarioDao proprietarioDao;
 	private ApartamentoDao apartamentoDao;
 	private VinculaDao vinculaDao;
+	
 
 	/**
 		 * @deprecated CDI eyes only
@@ -42,6 +45,7 @@ public class VinculaController {
 			this.proprietarioDao = proprietarioDao;
 			this.apartamentoDao = apartamentoDao;
 			this.vinculaDao = vinculaDao;
+			
 		}
 
 	@Path("/vincula")
@@ -50,6 +54,7 @@ public class VinculaController {
 		result.include("proprietario", proprietario);
 		List<Apartamento> apartamento = apartamentoDao.lista();
 		result.include("apartamento", apartamento);
+		
 	}
 	
 	@IncludeParameters

@@ -16,7 +16,7 @@
      <ul class="nav nav-pills">
   <li role="presentation" class="active"><a href="${linkTo[IndexController].index()}">Home</a></li>
   <li role="presentation"><a href="${linkTo[DespesaController].form()}">Lançar Despesas</a></li>
-  <li role="presentation"><a href="#">Gerenciar Condominio</a></li>
+  <li role="presentation"><a href="${linkTo[CondominioController].form()}">Gerenciar Condominio</a></li>
   <li role="presentation"><a href="${linkTo[ProprietarioController].form()}">Manter Proprietario</a></li>
   <li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter Apartamento</a></li>
   <li role="presentation"><a href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>

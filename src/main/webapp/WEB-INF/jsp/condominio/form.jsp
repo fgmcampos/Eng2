@@ -40,7 +40,7 @@
 	</nav>
 	<h4>
 	<form action="${linkTo[CondominioController].adiciona(null)}" method="post">
-		Apartamento:  &nbsp;&nbsp;<select name = concominio.apartamento style="width: 200px; height: 28px;" required = "required">
+		Apartamento:  &nbsp;&nbsp;<select name = condominio.apartamento style="width: 200px; height: 28px;" required = "required">
 		<option value=""> </option>	
 		<c:forEach  var="apartamento" items="${apartamento}">
         <option value="${apartamento.id}" >${apartamento.id}</option>

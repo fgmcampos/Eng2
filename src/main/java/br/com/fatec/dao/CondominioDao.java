@@ -24,23 +24,41 @@ public class CondominioDao {
 	
 	@Transactional
 	public void adiciona(Condominio condominio) {
-		if(condominio.getId()!=0){
-			manager.getTransaction().begin();
-			manager.merge(condominio);
-			manager.getTransaction().commit();
-		}else{
+		List<Condominio> lista = lista();
+		int cont = lista.size();
+		int cont2 =0;
+		String data = condominio.getMesano();
+		String ano = data.substring(0, 4);
+		String mes = data.substring(5);
+		String mesfix = ano+"¬"+mes;
+		
+		for(int i=0; i < lista.size(); i++){
+			if(condominio.getApartamento().equals(lista.get(i).getApartamento()) && mesfix.equals(lista.get(i).getMesano())){
+				int id =lista.get(i).getId();
+				condominio.setId(id);
+				manager.getTransaction().begin();
+				manager.merge(condominio);
+				manager.getTransaction().commit();
+			}else{
+				cont2++;
+			}
+			
+		if(cont2==cont){
 			manager.getTransaction().begin();
 			manager.persist(condominio);
 			manager.getTransaction().commit();
-			
+		}
 		}
 			
-		}
+			
+		
+			
+}
 	
-//	public List<Proprietario> lista(){
-//		TypedQuery<Proprietario> query =	manager.createQuery("select p from Proprietario p",Proprietario.class);
-//		return query.getResultList();
-//	}
+	public List<Condominio> lista(){
+		TypedQuery<Condominio> query =	manager.createQuery("select c from Condominio c",Condominio.class);
+		return query.getResultList();
+	}
 //	
 //	
 //	

@@ -106,6 +106,9 @@ public class DespesaController {
 			System.out.println(df.format(despesa.get(i).getValor()));
 		}
 		result.include("despesa", despesa);
+		List<Tipodespesa> tipodespesa = tipodespesaDao.lista();
+		result.include("tipodespesa", tipodespesa);
+		
 	}
 
 	@IncludeParameters

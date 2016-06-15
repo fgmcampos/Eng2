@@ -37,6 +37,7 @@
 		<tr>
 			<th>Apartamento</th>
 			<th>Mês</th>
+			<th>Tipo de despesa</th>
 			<th>Valor</th>		
 			<th>Remover</th>
 		</tr>
@@ -47,11 +48,16 @@
 			<tr>
 				<td>${d.apartamento}</td>
 				<td>${d.mesano}</td>
+				<c:forEach items="${tipodespesa}" var="t">
+				<c:if test="${d.tipodespesa == t.id}">
+				<td>${t.nome}</td>
+				</c:if>
+				</c:forEach> 
 				<td>${d.valor}</td>
 				<td>
 				
 					<form action="${linkTo[DespesaController].apaga(id)}" method="post">
-						<input name="tipodespesa.id" value="${tipodespesa}" type="hidden" />						   
+						<input name="despesa.id" value="${despesa}" type="hidden" />						   
 						<button type="submit" name="_method" value="DELETE" >Remover</button>
 					</form>
 				</td>

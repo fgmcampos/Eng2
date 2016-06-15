@@ -77,9 +77,9 @@ public class CondominioDao {
 //		}
 //	}
 //	
-//	public Proprietario busca(int id){
-//        TypedQuery<Proprietario> query =  manager.createQuery("select p from Proprietario p where p.id = :id ",Proprietario.class);
-//        query.setParameter("id", id);
-//        return query.getSingleResult();
-//    }
+	public Condominio busca(int id){
+        TypedQuery<Condominio> query =  manager.createQuery("select c from Condominio c where c.id = :id ",Condominio.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

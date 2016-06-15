@@ -55,5 +55,11 @@ public class DespesaDao {
 			System.out.println(s);
 		}
 	}
+	
+	public Despesa busca(int id){
+        TypedQuery<Despesa> query =  manager.createQuery("select d from Despesa d where d.id = :id ",Despesa.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 
 }

@@ -1,5 +1,6 @@
 package br.com.caelum.vraptor.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -69,6 +70,7 @@ public class TipodespesaController {
 	
 	@Delete("/tipodespesa/lista{id}")
 	public void apaga(int id) {
+
 			System.out.println(id);
 			tipodespesaDao.deleta(id);
 			result.redirectTo(this).lista();

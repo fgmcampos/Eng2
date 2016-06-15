@@ -37,7 +37,7 @@
 	</nav>
   <form action="${linkTo[VinculaController].adiciona(null)}" method="post">
 	<h4>
-		Proprietario:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name = vincula.proprietario style="width: 200px; height: 28px;" >
+		Proprietario:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name = vincula.proprietario style="width: 200px; height: 28px;" required = "required" >
 		<option value=""> </option>	
 		<c:forEach  var="proprietario" items="${proprietario}">
         <option value="${proprietario.id}">${proprietario.nome}</option>
@@ -46,7 +46,7 @@
 		&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<a href="${linkTo[ProprietarioController].form()}"> Adicionar</a>
 		</br>
 		</br>
-		Apartamento:  &nbsp;&nbsp;<select name = vincula.apartamento style="width: 200px; height: 28px;" >
+		Apartamento:  &nbsp;&nbsp;<select name = vincula.apartamento style="width: 200px; height: 28px;"  required = "required" >
 		<option value=""> </option>	
 		<c:forEach  var="apartamento" items="${apartamento}">
         <option value="${apartamento.id}" >${apartamento.id}</option>

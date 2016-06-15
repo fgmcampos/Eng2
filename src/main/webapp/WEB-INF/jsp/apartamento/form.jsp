@@ -26,13 +26,14 @@
 </nav>
 <form action="${linkTo[ApartamentoController].adiciona(null)}" method="post">
 <label for="nome">Número:</label>
-	<input type="text" id="id" name="apartamento.id" class="form-control" value="${apartamento.id}"/>
+	<input type="text" id="id" name="apartamento.id" class="form-control" value="${apartamento.id}" required = "required"/>
 
 	<label for="telefone">Quantidade de quartos:</label>
-	<input type="text" id="quartos" name="apartamento.quartos" class="form-control" value="${apartamento.quartos}"/>
+	<input type="text" id="quartos" name="apartamento.quartos" class="form-control" value="${apartamento.quartos}" required = "required"/>
 	
 	<p><label for="telefone">Ocupação:</label>
-	<select name="apartamento.ocupacao" class="form-control" >
+	<select name="apartamento.ocupacao" class="form-control" required = "required" >
+	<option value=""></option>
   <option value="1">Proprietário</option>
   <option value="2">Vazio</option>
   <option value="3">Inquilino</option>

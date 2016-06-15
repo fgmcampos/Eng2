@@ -31,7 +31,7 @@
 <form action="${linkTo[TipodespesaController].adiciona(null)}" method="post">
 <h4>
 	<label for="nome">Nome:</label>
-	<input type="text" id="nome" name="tipodespesa.nome" class="form-control" value="${tipodespesa.nome}"/>	
+	<input type="text" id="nome" name="tipodespesa.nome" class="form-control" value="${tipodespesa.nome}" required = "required"/>	
 	</br>
 	<input type="checkbox" id="valorporquarto" name="tipodespesa.valorporquarto" value="1" />
 	&nbsp;&nbsp; Valor deve ser dividido por quartos

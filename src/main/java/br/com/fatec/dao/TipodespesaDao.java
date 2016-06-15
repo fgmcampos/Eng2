@@ -42,6 +42,8 @@ public class TipodespesaDao {
 	}
 	
 	public void deleta(int id) {
+		if(id!=8){
+		
 		Tipodespesa t = new Tipodespesa();
 		t.setId(id);
 		System.out.println("Deletendo Tipodespesa com o ID = "+ id);
@@ -53,6 +55,9 @@ public class TipodespesaDao {
 			System.out.println("ERRO AO DELETAR");
 			String s = e.getMessage();
 			System.out.println(s);
+		}
+		}else{
+			System.out.println("Nao é possivel deletar a multa");
 		}
 	}
 	

@@ -39,7 +39,7 @@ Data:<%=mostra_data%>
 		</br> 
 		</br>
 		Apartamento:&nbsp;&nbsp;&nbsp;
-		<select name = despesa.apartamento style="width: 200px; height: 28px;" >
+		<select name = despesa.apartamento style="width: 200px; height: 28px;" required = "required" >
 		<option value=""> </option>	
 		<c:forEach  var="apartamento" items="${apartamento}">
         <option value="${apartamento.id}">${apartamento.id}</option>
@@ -54,7 +54,7 @@ Data:<%=mostra_data%>
 		<c:forEach  var="tipodespesa" items="${tipodespesa}">
         <option value="${tipodespesa.id}">${tipodespesa.nome}</option>
     	 </c:forEach>
-		</select> <a href="${linkTo[TipodespesaController].form()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nova Despesa</a>
+		</select> <a href="${linkTo[TipodespesaController].form()}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Novo tipo de despesa</a>
 		</br>
 		</br>
 		
@@ -64,7 +64,7 @@ Mês de Referência:</br></br>
 Valor:
 </br>
 </br>
-<input  type="text" id="valor" name="despesa.valor" class="form-control" value="${despesa.valor}" style="width: 200px; height: 28px;" />
+<input  type="text" id="valor" name="despesa.valor" class="form-control" value="${despesa.valor}" style="width: 200px; height: 28px;" required = "required" />
 </br></br>		
 		<input type="submit" value="Gravar" class="btn" size="50"
 			style="width: 151px; height: 28px;" /> 

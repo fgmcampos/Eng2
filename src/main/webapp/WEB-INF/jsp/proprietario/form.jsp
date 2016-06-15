@@ -33,9 +33,9 @@
 
 <form action="${linkTo[ProprietarioController].adiciona(null)}" method="post">
 	<label for="nome">Nome:</label>
-	<input type="text" id="nome" name="proprietario.nome" class="form-control" value="${proprietario.nome}"/>	
+	<input type="text" id="nome" name="proprietario.nome" class="form-control" value="${proprietario.nome}" required = "required"/>	
 	<label for="telefone">Telefone:</label>
-	<input type="text" id="telefone" name="proprietario.telefone" class="form-control" value="${proprietario.telefone}" />
+	<input type="text" id="telefone" name="proprietario.telefone" class="form-control" value="${proprietario.telefone}" required = "required" />
 	<input type="hidden" id="id" name="proprietario.id" class="form-control" value="${proprietario.id}" />
 	<input type="submit" value="Gravar" class="btn" size="50"
 			style="width: 151px; height: 28px;" /> 

@@ -19,8 +19,8 @@ public class Condominio {
 	private String mesano;
 	private String datapagamento;
 	private String datavencimento;
-	private float valorPago;
-	private float valorAPagar;
+	private float valorpago;
+	private float valorapagar;
 	
 	public int getId() {
 		return id;
@@ -41,17 +41,17 @@ public class Condominio {
 	public void setDatavencimento(String datavencimento) {
 		this.datavencimento = datavencimento;
 	}
-	public float getValorPago() {
-		return valorPago;
+	public float getValorpago() {
+		return valorpago;
 	}
-	public void setValorPago(float valorPago) {
-		this.valorPago = valorPago;
+	public void setValorpago(float valorpago) {
+		this.valorpago = valorpago;
 	}
-	public float getValorAPagar() {
-		return valorAPagar;
+	public float getValorapagar() {
+		return valorapagar;
 	}
-	public void setValorAPagar(float valorAPagar) {
-		this.valorAPagar = valorAPagar;
+	public void setValorapagar(float valorapagar) {
+		this.valorapagar = valorapagar;
 	}
 	public String getApartamento() {
 		return apartamento;

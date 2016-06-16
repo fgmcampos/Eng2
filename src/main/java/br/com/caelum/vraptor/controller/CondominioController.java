@@ -62,23 +62,42 @@ import br.com.fatec.model.Tipodespesa;
 			List<Apartamento> apartamento = apartamentoDao.lista();
 			result.include("apartamento", apartamento);
 		}
-
+		
+		public void pago(int id) {
+			Condominio condominio = condominioDao.busca(id);
+			System.out.println(condominio.getValorpago());
+			result.include("condominio",condominio);
+		}
+		
+			
 		@IncludeParameters
 		@Post
 		public void adiciona(Condominio condominio) {
-			
+			Condominio condominio2 = new Condominio();
+			condominio2.setApartamento(condominio.getApartamento());;
+			condominio2.setDatapagamento(condominio.getDatapagamento());
+			condominio2.setDatavencimento(condominio.getDatavencimento());
+			condominio2.setId(condominio.getId());
+			condominio2.setMesano(condominio.getMesano());
+			condominio2.setValorapagar(condominio.getValorapagar());
+			condominio2.setValorpago(condominio.getValorpago());
+
 			String data = condominio.getMesano();
 			String ano = data.substring(0, 4);
 			String mes = data.substring(5);
 			String mesfix = ano+"¬"+mes;
+			//QUANDO FOR A PRIMEIRA VEZ INSERINDO ALGO NA TABALA CONDOMINIO, DESCOMENTAR O IF ABAIXO
+//			if(lista.size()!=0){
+			
+			
 			float valortotal=0;
 			List<Despesa> despesa = despesaDao.lista();
-			for(int i=0; i<despesa.size();i++){
-				if(despesa.get(i).getApartamento()== Integer.parseInt(condominio.getApartamento()) && despesa.get(i).getMesano().equals(mesfix)){				
-					valortotal= valortotal + despesa.get(i).getValor();
+			for(int x=0; x<despesa.size();x++){
+				if(despesa.get(x).getApartamento()== Integer.parseInt(condominio.getApartamento()) && despesa.get(x).getMesano().equals(mesfix)){				
+					valortotal= valortotal + despesa.get(x).getValor();
 				}
 				}
-			condominio.setValorAPagar(valortotal);
+			condominio.setValorapagar(valortotal);
 			String vencimento ="teste";
 			if(Integer.parseInt(mes)==12){
 				mes = "01";
@@ -93,16 +112,31 @@ import br.com.fatec.model.Tipodespesa;
 				condominio.setDatavencimento(vencimento);
 				
 			}
-				try {
-					
-				condominioDao.adiciona(condominio);
-			} catch (NullPointerException e) {
-				System.out.println("ERRO!");
-				e.printStackTrace();
-			}
-			result.redirectTo(this).lista(condominio.getApartamento(),condominio.getMesano(),condominio);
+			List<Condominio> lista = condominioDao.lista();
 			
+			int cont = 0;
+
+			for(int i=0; i < lista.size(); i++){
+				if(condominio2.getApartamento().equals(lista.get(i).getApartamento()) && mesfix.equals(lista.get(i).getMesano())){
+					if(lista.get(i).getValorpago()!=0){
+						System.out.println("redirecionando");
+						result.redirectTo(this).pago(lista.get(i).getId());
+						cont=1;
+					}
+				}
+			}
+			
+			if(cont==0){
+			condominioDao.adiciona(condominio);
+			result.redirectTo(this).lista(condominio.getApartamento(),condominio.getMesano(),condominio);
+			}
 		}
+			
+			
+				
+	
+			
+		
 
 		public void lista(String apartamento,String mesano, Condominio condominio) {
 			String data = mesano;
@@ -114,6 +148,7 @@ import br.com.fatec.model.Tipodespesa;
 			DecimalFormat df = new DecimalFormat("#####0.00");
 			List<Despesa> despesa = despesaDao.lista();
 			List<Despesa> despesafix = new ArrayList<Despesa>();;
+			
 			for(int i=0; i<despesa.size();i++){
 				if(despesa.get(i).getApartamento()== Integer.parseInt(apartamento) && despesa.get(i).getMesano().equals(mesfix)){				
 					Despesa despesa2 = despesa.get(i); 
@@ -155,21 +190,10 @@ import br.com.fatec.model.Tipodespesa;
 		}
 		
 		
-		@Delete("/condominio/lista{id}")
-		public void apaga(int id) {
-				Despesa despesa = despesaDao.busca(id);
-				String apartamento = Integer.toString(despesa.getApartamento());
-				String mesano = despesa.getMesano();
-				
-			
-				System.out.println(apartamento +"   " + mesano);
-				despesaDao.deleta(id);
-				result.redirectTo(this).lista(apartamento,mesano,null);
-						
-		}
 		
 		
-		public void pagar(int multa, String apartamento, String mesano, float valor){
+		public void pagar(int multa, String apartamento, String mesano, float valor, int id){
+			System.out.println(multa+apartamento+mesano+" "+valor+" "+id);
 			String data = mesano;
 			String ano = data.substring(0, 4);
 			String mes = data.substring(5);
@@ -177,23 +201,31 @@ import br.com.fatec.model.Tipodespesa;
 			String mes2 = data.substring(5);
 			String mesfix = ano+"¬"+mes;
 			String vencimento ="teste";
+			Condominio condominio = new Condominio();
+			condominio.setValorapagar(valor);
+			String proxmes2 = "";
 			if(Integer.parseInt(mes)==12){
 				mes = "01";
 				int anoint = Integer.parseInt(ano);
 				anoint++;
-				vencimento = "10/"+mes+"/"+anoint;
+				vencimento = "10/01/"+anoint;
+				proxmes2= ano+"-01";
 			}else{
 				int mesint = Integer.parseInt(mes);
 				mesint++;
 				if(mesint<10){
 					String meszero = "0"+mesint;
 					vencimento = "10/"+meszero+"/"+ano;
+					proxmes2=ano+"-"+mes;
 				}else{
 					vencimento = "10/"+mesint+"/"+ano;
+					proxmes2=ano+"-"+mes;
+
 				}
-				
+				System.out.println(proxmes2);
 				
 			}
+			condominio.setDatavencimento(vencimento);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			sdf.setLenient(false);
 			Date vencimento2 = new Date();
@@ -205,27 +237,30 @@ import br.com.fatec.model.Tipodespesa;
 				e.printStackTrace();
 			}			
 			Date datahoje = new Date();
+			condominio.setApartamento(apartamento);
+			condominio.setMesano(proxmes2);
+			condominio.setValorpago(valor);
+			SimpleDateFormat data_formatada = new SimpleDateFormat("dd/MM/yyyy");
+			String mostra_data = data_formatada.format(datahoje);
+			condominio.setDatapagamento(mostra_data);
 			if(datahoje.before(vencimento2)){
 				String pago = "Pago";
 			}else{
 				if(multa==1){
-					Condominio condominio = new Condominio();
-					condominio.setValorAPagar(valor);
-					condominio.setApartamento(apartamento);
-					condominio.setMesano(mesano);				
+					
+					
+					
+					
 					float precomulta = valor +(valor/10)*2;
-					condominio.setValorPago(precomulta);
+					condominio.setValorpago(precomulta);
 					System.out.println("Valor do condominio + multa ="+precomulta);
-					condominioDao.adiciona(condominio);
+
 					
 				}else{
-					Condominio condominio = new Condominio();
-					condominio.setValorAPagar(valor);
-					condominio.setApartamento(apartamento);
-					condominio.setMesano(mesano);
-					condominio.setValorPago(valor);
+					condominio.setValorpago(valor);
+					System.out.println(mostra_data);
+					float precomulta = (valor/10)*2;
 					System.out.println("Valor do condominio "+ valor+". a multa foi adicionado a despesa do proximo mes");
-					condominioDao.adiciona(condominio);
 					Despesa despesa = new Despesa();
 					String proxmes = "";
 					despesa.setTipodespesa(8);
@@ -240,11 +275,12 @@ import br.com.fatec.model.Tipodespesa;
 					}
 					}			
 					despesa.setMesano(proxmes);
+					despesa.setValor(precomulta);
 					despesa.setApartamento(Integer.parseInt(apartamento));
 					Date data2 = new Date();
-					SimpleDateFormat data_formatada = new SimpleDateFormat("dd/MM/yyyy");
-					String mostra_data = data_formatada.format(data2);
-					despesa.setDatalancamento(mostra_data);
+					SimpleDateFormat data_formatada2 = new SimpleDateFormat("dd/MM/yyyy");
+					String mostra_data2 = data_formatada2.format(data2);
+					despesa.setDatalancamento(mostra_data2);
 					float multa5= (valor/100)*5;
 					despesa.setValor(multa5);
 					despesaDao.adiciona(despesa);
@@ -253,10 +289,11 @@ import br.com.fatec.model.Tipodespesa;
 				}
 				}
 			
+			condominioDao.adiciona(condominio);
 
+			
 
-
-			result.redirectTo(this).form();
+			result.redirectTo(this).pago(id);
 		}
 		
 	}

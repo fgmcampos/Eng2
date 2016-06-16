@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Lista de despesas</title>
+<title>Gerenciar Condominio</title>
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
 				<td>${d.valor}</td>
 				<td>
 				
-					<form action="${linkTo[CondominioController].apaga(id)}" method="post">
+					<form action="${linkTo[DespesaController].apaga(id)}" method="post">
 						<input name="despesa.id" value="${despesa}" type="hidden" />						   
 						<button type="submit" name="_method" value="DELETE" >Remover</button>
 					</form>
@@ -68,8 +68,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-<h2>Valor Total:&nbsp;&nbsp; ${valortotal}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vencimento: ${vencimento}</h2> 
-<c:if test="${condominio.valorAPagar != 0}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<center><font color = "FF0000"><h1>Pago</h1></font></center></c:if>
+<h2>Valor Total:&nbsp;&nbsp; ${valortotal}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vencimento: ${vencimento}</h2>
 </br>
 
 
@@ -81,6 +80,7 @@ caso deixar pra para pagar no proximo mes.
 		<input type="hidden" id="apartamento" name="apartamento" value="${condominio.apartamento}" />
 		<input type="hidden" id="mesano" name="mesano" value="${condominio.mesano}" />
 		<input type="hidden" id="valor" name="valor" value="${valortotal}" />
+		<input type="hidden" id="id" name="id" value="${condominio.id}" />
 	&nbsp;&nbsp;Caso vencimento tenha passado, deseja pagar a multa agora?
 	</br></br>
 	<c:set var="multaagora" value="multa" scope="request"></c:set>

@@ -42,7 +42,7 @@ public class TipodespesaDao {
 	}
 	
 	public void deleta(int id) {
-		if(id!=8){
+		if(id!=1){
 		
 		Tipodespesa t = new Tipodespesa();
 		t.setId(id);

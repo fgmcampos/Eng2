@@ -31,7 +31,7 @@
 			<li role="presentation"><a
 				href="${linkTo[ProprietarioController].form()}">Manter
 					Proprietario</a></li>
-			<li role="presentation"><a href="">Manter
+			<li role="presentation"><a href="${linkTo[ApartamentoController].form()}">Manter
 					Apartamento</a></li>
 			<li role="presentation"><a
 				href="${linkTo[VinculaController].form()}">Vincular Apartamento</a></li>

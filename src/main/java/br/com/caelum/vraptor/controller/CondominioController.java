@@ -263,7 +263,7 @@ import br.com.fatec.model.Tipodespesa;
 					System.out.println("Valor do condominio "+ valor+". a multa foi adicionado a despesa do proximo mes");
 					Despesa despesa = new Despesa();
 					String proxmes = "";
-					despesa.setTipodespesa(8);
+					despesa.setTipodespesa(1);
 					if(Integer.parseInt(mes2)==12){
 					int proxano =Integer.parseInt(ano2)+1;
 					proxmes = proxano+"-01";

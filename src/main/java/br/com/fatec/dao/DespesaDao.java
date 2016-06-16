@@ -42,6 +42,7 @@ public class DespesaDao {
 	}
 	
 	public void deleta(int id) {
+		System.out.println(id);
 		Despesa d = new Despesa();
 		d.setId(id);
 		System.out.println("Deletendo Despesas com o ID = "+ id);

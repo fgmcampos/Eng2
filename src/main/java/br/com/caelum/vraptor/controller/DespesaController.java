@@ -142,7 +142,7 @@ public class DespesaController {
 			Despesa despesa1 = new Despesa();
 			despesa1.setDatalancamento(mostra_data);
 			despesa1.setMesano(despesa.getMesano());
-			despesa1.setTipodespesa(despesa.getTipodespesa());
+			despesa1.setTipodespesa(1);
 			despesa1.setValor(despesa.getValor());
 			System.out.println(apartamento.get(i).getId()+"      "+ despesa.getId());
 			despesa1.setApartamento(apartamento.get(i).getId());

@@ -33,7 +33,7 @@ public class CondominioDao {
 		String mes = data.substring(5);
 		String mesfix = ano+"¬"+mes;
 		System.out.println(condominio.getMesano());
-//		if(lista.size()!=0){
+		if(lista.size()!=0){//
 		for(int i=0; i < lista.size(); i++){
 			if(condominio.getApartamento().equals(lista.get(i).getApartamento()) && mesfix.equals(lista.get(i).getMesano())){
 				int id =lista.get(i).getId();
@@ -51,11 +51,11 @@ public class CondominioDao {
 			manager.getTransaction().commit();
 		}
 		}
-//		}else{
-//			manager.getTransaction().begin();
-//			manager.persist(condominio);
-//			manager.getTransaction().commit();
-//		}
+		}else{//
+			manager.getTransaction().begin();//
+			manager.persist(condominio);//
+			manager.getTransaction().commit();//
+		}//
 		}
 			
 			
